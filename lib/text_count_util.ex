@@ -17,15 +17,15 @@ defmodule TextCountUtil do
   @spec words_count(String.t()) :: non_neg_integer()
   def words_count(filename) do
     File.stream!(filename)
-    |> Stream.with_index(1)
+    # |> Stream.with_index(1)
     |> Stream.map(&(do_count(&1)))
     |> Stream.map(&(get_count(&1)))
     |> Enum.sum
   end
 
-  defp do_count({line, idx}) do
-    {:ok, pid} = Counter.start_link(idx)
-    GenServer.cast(pid, {:do_count, line})
+  defp do_count(line) do
+    {:ok, pid} = Counter.start_link(line)
+    # GenServer.cast(pid, {:do_count, line})
     pid
   end
 

@@ -3,8 +3,8 @@ defmodule TextCountUtil.Counter do
 
   alias TextCountUtil.{CounterDynamicSupervisor, CounterRegistry}
 
-  def start_link(line_number) do
-    name = {:via, Registry, {CounterRegistry, line_number}}
+  def start_link(line) do
+    name = {:via, Registry, {CounterRegistry, ''}}
     DynamicSupervisor.start_child(
       CounterDynamicSupervisor,
       %{
@@ -12,7 +12,7 @@ defmodule TextCountUtil.Counter do
         start: {
           GenServer,
           :start_link,
-          [__MODULE__, 0, [name: name]]
+          [__MODULE__, line, [name: name]]
         },
         restart: :transient
       }
@@ -22,7 +22,7 @@ defmodule TextCountUtil.Counter do
   ## Callbacks
 
   @impl GenServer
-  def init(_), do: {:ok, 0}
+  def init(line), do: {:ok, 0, {:continue, {:count, line}}}
 
   @impl GenServer
   def handle_call(:get_count, _from, count) do
@@ -30,7 +30,12 @@ defmodule TextCountUtil.Counter do
   end
 
   @impl GenServer
-  def handle_cast({:do_count, line}, _state) do
+  def handle_continue({:count, line}, 0) do
     {:noreply, Enum.count(String.split(line, " "))}
   end
+
+  # @impl GenServer
+  # def handle_cast({:do_count, line}, _state) do
+  #   {:noreply, Enum.count(String.split(line, " "))}
+  # end
 end
