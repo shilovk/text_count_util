@@ -8,8 +8,6 @@ defmodule TextCountUtil.Application do
   @impl Application
   def start(_type, _args) do
     children = [
-      # The Counter is a child started via Counter.start_link(0)
-      {Registry, keys: :unique, name: TextCountUtil.CounterRegistry},
       {DynamicSupervisor, name: TextCountUtil.CounterDynamicSupervisor}
     ]
 

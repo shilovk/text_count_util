@@ -34,4 +34,4 @@ IEx.configure(
     |> IO.chardata_to_string()
 )
 
-alias TextCountUtil.{Counter, CounterDynamicSupervisor, CounterRegistry}
+alias TextCountUtil.{Counter, CounterDynamicSupervisor}

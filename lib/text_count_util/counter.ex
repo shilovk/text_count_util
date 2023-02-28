@@ -1,10 +1,9 @@
 defmodule TextCountUtil.Counter do
   use GenServer
 
-  alias TextCountUtil.{CounterDynamicSupervisor, CounterRegistry}
+  alias TextCountUtil.CounterDynamicSupervisor
 
   def start_link(line) do
-    name = {:via, Registry, {CounterRegistry, ''}}
     DynamicSupervisor.start_child(
       CounterDynamicSupervisor,
       %{
@@ -12,7 +11,7 @@ defmodule TextCountUtil.Counter do
         start: {
           GenServer,
           :start_link,
-          [__MODULE__, line, [name: name]]
+          [ __MODULE__, line, '_']
         },
         restart: :transient
       }
