@@ -1,7 +1,7 @@
 # TextCountUtil
 
 The equivalent of the wc utility.
-It calculate the number of words in the file by parallel computation in 16 processes.
+It calculate the number of words in the file by parallel computation by core number processes.
 
 ## Installation
 

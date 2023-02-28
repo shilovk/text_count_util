@@ -1,0 +1,46 @@
+Operating System: macOS
+CPU Information: Apple M1 Max
+Number of Available Cores: 10
+Available memory: 32 GB
+Elixir 1.14.3
+Erlang 25.2
+
+Benchmark suite executing with the following configuration:
+warmup: 3 s
+time: 10 s
+memory time: 2 s
+reduction time: 0 ns
+parallel: 1
+inputs: none specified
+Estimated total run time: 45 s
+
+Benchmarking words_count ...
+Benchmarking words_count_async ...
+Benchmarking words_count_chunk ...
+Generated test/benchee/output/results.html
+Generated test/benchee/output/results_comparison.html
+Generated test/benchee/output/results_words_count.html
+Generated test/benchee/output/results_words_count_async.html
+Generated test/benchee/output/results_words_count_chunk.html
+
+Name                        ips        average  deviation         median         99th %
+words_count               17.88       55.92 ms     ±1.84%       55.69 ms       61.45 ms
+words_count_chunk         17.28       57.88 ms     ±2.09%       57.69 ms       65.02 ms
+words_count_async         11.70       85.50 ms     ±1.56%       85.59 ms       89.72 ms
+
+Comparison: 
+words_count               17.88
+words_count_chunk         17.28 - 1.03x slower +1.95 ms
+words_count_async         11.70 - 1.53x slower +29.57 ms
+
+Memory usage statistics:
+
+Name                      average  deviation         median         99th %
+words_count               7.33 MB     ±0.04%        7.33 MB        7.34 MB
+words_count_chunk         8.20 MB     ±0.07%        8.20 MB        8.22 MB
+words_count_async        10.76 MB     ±0.06%       10.76 MB       10.77 MB
+
+Comparison: 
+words_count               7.33 MB
+words_count_chunk         8.20 MB - 1.12x memory usage +0.87 MB
+words_count_async        10.76 MB - 1.47x memory usage +3.43 MB
