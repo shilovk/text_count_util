@@ -4,9 +4,10 @@ filename = "test/fixtures/war_and_peace.txt"
 
 Benchee.run(
   %{
-    "words_count" => fn -> TextCountUtil.words_count(filename) end,
+    "words_count"       => fn -> TextCountUtil.words_count(filename) end,
     "words_count_chunk" => fn -> TextCountUtil.words_count_chunk(filename) end,
-    "words_count_async" => fn -> TextCountUtil.words_count_async(filename) end
+    "words_count_async" => fn -> TextCountUtil.words_count_async(filename) end,
+    "words_count_flow"  => fn -> TextCountUtil.words_count_flow(filename) end
   },
   time: 10,
   memory_time: 2,
