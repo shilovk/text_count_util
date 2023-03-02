@@ -27,3 +27,6 @@ kanban-*.tar
 
 /priv/plts/*.plt
 /priv/plts/*.plt.hash
+
+/.idea/
+/test/benchee/output/
